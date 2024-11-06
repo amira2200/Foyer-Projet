@@ -28,20 +28,5 @@ services:
       SPRING_JPA_HIBERNATE_DDL_AUTO: "update"
     depends_on:
       - mysqldb
-
-  grafana:
-    image: grafana/grafana:latest
-    container_name: grafana
-    restart: always
-    ports:
-      - "3000:3000"
-    environment:
-      GF_SECURITY_ADMIN_PASSWORD: "Grafana"
-    volumes:
-      - grafana_data:/var/lib/grafana
-    depends_on:
-      - app
-
 volumes:
   db_data:
-  grafana_data:
