@@ -64,7 +64,7 @@ pipeline {
         }
         stage('Docker Image') {
                     steps {
-                        sh "docker build -t adamnajar98/app.jar ."
+                        sh "docker build -t fahedmaatoug/app.jar ."
                     }
                 }
         stage('Docker Hub') {
@@ -72,7 +72,7 @@ pipeline {
                         withCredentials([usernamePassword(credentialsId: '3e79e975-e998-4c86-8b83-48a49a44ea77', usernameVariable: 'DOCKER_USERNAME', passwordVariable: 'DOCKER_PASSWORD')]) {
                             sh '''
                             echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
-                            docker push adamnajar98/app.jar
+                            docker push fahedmaatoug/app.jar
                             '''
                         }
                     }
@@ -97,7 +97,7 @@ pipeline {
                     subject: "Jenkins Pipeline Success: ${currentBuild.fullDisplayName}",
                     body: """<p>The Jenkins pipeline for <b>${env.JOB_NAME}</b> completed successfully.</p>
                              <p>Build URL: <a href="${env.BUILD_URL}">${env.BUILD_URL}</a></p>""",
-                    to: 'adamabdelkader.najar@esprit.tn'
+                    to: 'fahed.maatoug@esprit.tn'
                 )
             }
 
@@ -107,7 +107,7 @@ pipeline {
                     subject: "Jenkins Pipeline Failure: ${currentBuild.fullDisplayName}",
                     body: """<p>The Jenkins pipeline for <b>${env.JOB_NAME}</b> failed.</p>
                              <p>Check the logs for more details: <a href="${env.BUILD_URL}">${env.BUILD_URL}</a></p>""",
-                    to: 'adamabdelkader.najar@esprit.tn'
+                    to: 'fahed.maatoug@esprit.tn'
                 )
             }
         }
