@@ -2,7 +2,7 @@ version: '3.8'
 
 services:
   app:
-    image: "adamnajar98/app.jar"  # Use dynamic version tag
+    image: "fahedmaatoug/app.jar"  # Use dynamic version tag
     container_name: app_container
     ports:
       - "8089:8089"
