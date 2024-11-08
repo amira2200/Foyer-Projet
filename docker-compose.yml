@@ -1,4 +1,4 @@
-version: '3.8'
+version: '3.8'  # Version should be at the top of the file
 
 services:
   mysqldb:
@@ -16,7 +16,9 @@ services:
       - db_data:/var/lib/mysql
 
   app:
-    image: lbenji/devops
+    build:  # This tells Docker Compose to build the image from the Dockerfile
+      context: .  # Uses the current directory as the context
+    image: lbenji/devops  # You can specify a tag here to avoid using 'latest'
     container_name: tp-foyer-app
     restart: on-failure
     ports:
@@ -28,7 +30,6 @@ services:
       SPRING_JPA_HIBERNATE_DDL_AUTO: "update"
     depends_on:
       - mysqldb
-
 
 volumes:
   db_data:
