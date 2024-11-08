@@ -2,7 +2,7 @@ pipeline {
     agent any
       environment {
 
-            DOCKER_CREDENTIALS_ID = '3e79e975-e998-4c86-8b83-48a49a44ea77'
+            DOCKER_CREDENTIALS_ID = '7bd63c90-c4e0-4c8b-989e-6772620cedb7'
                    }
     stages {
         stage('Git') {
@@ -69,7 +69,7 @@ pipeline {
                 }
         stage('Docker Hub') {
                     steps {
-                        withCredentials([usernamePassword(credentialsId: 'dckr_pat_A5N7MauhPQdXNR8-dTKNn8CN9_g', usernameVariable: 'fahedmaatoug', passwordVariable: 'Aouida@1975')]) {
+                      withCredentials([usernamePassword(credentialsId: '7bd63c90-c4e0-4c8b-989e-6772620cedb7', usernameVariable: 'DOCKER_USERNAME', passwordVariable: 'DOCKER_PASSWORD')]) {
                             sh '''
                             echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
                             docker push fahedmaatoug/app.jar
