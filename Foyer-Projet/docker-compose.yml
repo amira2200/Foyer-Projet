@@ -34,7 +34,7 @@ services:
       ports:
         - "9090:9090"
       volumes:
-        - ./prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
+        - /host_mnt/f/projet devops/Foyer-Projet/prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
 
   grafana:
         image: grafana/grafana
