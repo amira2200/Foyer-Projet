@@ -13,7 +13,6 @@ import java.util.List;
 @AllArgsConstructor
 @RequestMapping("/universite")
 public class UniversiteRestController {
- @Autowired
     IUniversiteService universiteService;
 
 
