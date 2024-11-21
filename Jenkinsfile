@@ -111,4 +111,26 @@ pipeline {
                 )
             }
         }
+    // Envoyer une notification par email si le pipeline se termine avec succès
+                stage('Send Email Notification') {
+                    steps {
+                        mail bcc: '',
+                             body: """
+                                    Bonjour,
+        
+                                    Le pipeline ${env.JOB_NAME} (Build #${env.BUILD_NUMBER}) s'est terminé avec succès.
+        
+                                    Consultez les détails ici : ${env.BUILD_URL}
+        
+                                    Cordialement,
+                                    Jenkins
+                                    """,
+                             cc: '',
+                             from: 'maatougfahed2@gmail.com',
+                             replyTo: 'maatougfahed2@gmail.com',
+                             subject: "Pipeline Success: ${env.JOB_NAME} - Build #${env.BUILD_NUMBER}",
+                             to: 'maatougfahed2@gmail.com'
+                    }
+                }
+                  
 }
