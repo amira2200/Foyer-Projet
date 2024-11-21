@@ -96,31 +96,27 @@ pipeline {
         // Remove the `Send Email Notification` stage from here
     }
 
-   post {
-    success {
-        echo 'Build, Test, and SonarQube Analysis completed successfully!'
-        // emailext (
-        //     subject: "Jenkins Pipeline Success: ${currentBuild.fullDisplayName}",
-        //     body: """<p>The Jenkins pipeline for <b>${env.JOB_NAME}</b> completed successfully.</p>
-        //              <p>Build URL: <a href="${env.BUILD_URL}">${env.BUILD_URL}</a></p>""",
-        //     to: 'maatougfahed2@gmail.com'
-        // )
-    }
+ // Envoyer une notification par email si le pipeline se termine avec succès
+        stage('Send Email Notification') {
+            steps {
+                mail bcc: '',
+                     body: """
+                            Bonjour,
 
-    failure {
-        echo 'There was an error in the pipeline stages.'
-        // emailext (
-        //     subject: "Jenkins Pipeline Failure: ${currentBuild.fullDisplayName}",
-        //     body: """<p>The Jenkins pipeline for <b>${env.JOB_NAME}</b> failed.</p>
-        //              <p>Check the logs for more details: <a href="${env.BUILD_URL}">${env.BUILD_URL}</a></p>""",
-        //     to: 'maatougfahed2@gmail.com'
-        // )
-    }
+                            Le pipeline ${env.JOB_NAME} (Build #${env.BUILD_NUMBER}) s'est terminé avec succès.
 
-    always {
-        echo 'Cleaning up resources...'
-        // Add cleanup tasks here if necessary
-    }
-}
+                            Consultez les détails ici : ${env.BUILD_URL}
+
+                            Cordialement,
+                            Jenkins
+                            """,
+                     cc: '',
+                     from: 'maatougfahed2@gmail.com',
+                     replyTo: 'maatougfahed2@gmail.com',
+                     subject: "Pipeline Success: ${env.JOB_NAME} - Build #${env.BUILD_NUMBER}",
+                     to: 'maatougfahed2@gmail.com'
+            }
+        }
+    
 
 }
