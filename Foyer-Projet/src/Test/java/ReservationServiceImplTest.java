@@ -26,7 +26,11 @@ class ReservationServiceImplTest {
 
     @BeforeEach
     void setUp() {
-        MockitoAnnotations.openMocks(this);
+        try (AutoCloseable mocks = MockitoAnnotations.openMocks(this)) {
+            // Les mocks sont correctement initialisés ici
+        } catch (Exception e) {
+            throw new RuntimeException("Failed to initialize mocks", e);
+        }
     }
 
     @Test

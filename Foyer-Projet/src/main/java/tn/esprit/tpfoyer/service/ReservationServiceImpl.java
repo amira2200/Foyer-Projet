@@ -20,8 +20,10 @@ public class ReservationServiceImpl implements IReservationService {
     }
 
     public Reservation retrieveReservation(String reservationId) {
-        return reservationRepository.findById(reservationId).get();
+        return reservationRepository.findById(reservationId)
+                .orElseThrow(() -> new IllegalArgumentException("Reservation with ID " + reservationId + " not found"));
     }
+
 
     public Reservation addReservation(Reservation r) {
         return reservationRepository.save(r);
