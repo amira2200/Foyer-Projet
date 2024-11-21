@@ -8,7 +8,6 @@ import lombok.experimental.FieldDefaults;
 import java.util.HashSet;
 import java.util.Set;
 
-
 @Entity
 @Getter
 @Setter
@@ -31,7 +30,5 @@ public class Bloc {
     @OneToMany(mappedBy = "bloc")
     @JsonIgnore
     @ToString.Exclude
-    Set<Chambre> chambres = new HashSet<Chambre>();
-
+    Set<Chambre> chambres = new HashSet<>();
 }
-
