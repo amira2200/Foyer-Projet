@@ -26,19 +26,20 @@ public class ChambreServiceImpl implements IChambreService {
     }
 
     public Chambre retrieveChambre(Long chambreId) {
-        Chambre c = chambreRepository.findById(chambreId).get();
-        return c;
+        return chambreRepository.findById(chambreId)
+                .orElseThrow(() -> new IllegalArgumentException("Chambre with ID " + chambreId + " not found"));
     }
+
 
     public Chambre addChambre(Chambre c) {
-        Chambre chambre = chambreRepository.save(c);
-        return chambre;
+        return chambreRepository.save(c);
     }
 
+
     public Chambre modifyChambre(Chambre c) {
-        Chambre chambre = chambreRepository.save(c);
-        return c;
+        return chambreRepository.save(c);
     }
+
 
     public void removeChambre(Long chambreId) {
         chambreRepository.deleteById(chambreId);
